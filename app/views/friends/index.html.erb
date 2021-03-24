@@ -1,0 +1,55 @@
+
+<% if user_signed_in?%>
+
+  <h1>Friends List</h1>
+
+
+
+  
+  <div class="tt">
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark ">
+      <tr>
+        <th>Name</th>
+        <%# <th>Last name</th> %>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Twitter</th>
+        <th>city</th>
+        <%# <th>User Id</th> %>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @friends.each do |friend| %>
+      <% if friend.user == current_user%>
+        <tr>
+          <td>
+          <%= link_to friend.first_name+" "+friend.last_name, friend %>
+          <% friend.first_name %>
+              <% friend.last_name %>
+              </td>
+          <td><%= friend.email %></td>
+          <td><%= friend.phone %></td>
+          <td><%= friend.twitter %></td>
+          <td><%= friend.city %></td>
+          
+          
+          <%# <td><% link_to 'Show', friend %>
+         
+          <td><%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <br>
+
+  <%= link_to 'New Friend', new_friend_path, class:"btn btn-secondary" %>
+<% else %>
+  <h1>Welcom to Friends world!</h1>
+   Add your friends to your table make your world beautifull!!
+<% end %>
